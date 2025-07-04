@@ -1,0 +1,32 @@
+<br>
+<br>
+<div class="content is-medium container level">
+
+<h1 >Blood Sugar Monitor</h1>
+<div class="container block">
+<div class="buttons no-print container">
+  <%= link_to "Add New Reading", new_reading_path, class: "button is-primary" %>
+  <button onclick="window.print()" class="button is-info">Print as PDF</button>
+</div>
+
+<% @readings_by_year.each do |year, readings| %>
+  <h2><%= year %></h2>
+  <table class="table block">
+    <tr>
+      <th>Date</th>
+      <th>Blood Sugar</th>
+      <th>Actions</th>
+    </tr>
+    <% readings.each do |reading| %>
+      <tr>
+        <td><%= reading.created_at.strftime("%b %d, %Y %H:%M") %></td>
+        <td><%= reading.blood_sugar %></td>
+        <td><%= link_to "Delete", reading_path(reading), method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<% end %>
+
+<%= link_to "Add New Reading", new_reading_path, class: "button is-primary" %>
+</div></div>

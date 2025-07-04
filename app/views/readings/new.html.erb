@@ -1,0 +1,19 @@
+<br><br>
+<div class="content is-medium container level">
+  <h1>LOG Blood Sugar</h1>  
+  <div class="container block">
+    <div class="table">
+      <%= form_with model: @reading, local: true do |f| %>
+      <%= f.label :blood_sugar  %>
+      <%= f.number_field :blood_sugar, required: true, class:"input is-info is-medium" %>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "button is-success" "Save Reading" %>
+  </div>
+  <% end %>
+  <div>
+        <%= link_to "Home", root_path, class: "button is-danger" %>
+  </div>
+</div>
+
