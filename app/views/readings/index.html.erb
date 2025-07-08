@@ -19,10 +19,14 @@
     </tr>
     <% readings.each do |reading| %>
       <tr>
-        <td><%= reading.created_at.strftime("%b %d, %Y %H:%M") %></td>
+        <td><%= reading.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%b %d, %Y %H:%M %Z") %></td>
         <td><%= reading.blood_sugar %></td>
-        <td><%= link_to "Delete", reading_path(reading), method: :delete, data: { confirm: "Are you sure?" } %></td>
-      </tr>
+        <td>
+          <%= link_to "Delete", reading_path(reading), class: "button is-small is-success", method: :delete, data: { confirm: "Are you sure?" } %>
+          <%= link_to "Edit", edit_reading_path(reading), class: "button is-small is-warning" %>
+        </td>
+        
+        </tr>
     <% end %>
   </table>
 

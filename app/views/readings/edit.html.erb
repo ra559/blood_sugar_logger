@@ -1,0 +1,20 @@
+<br><br>
+<div class="content is-medium container level">
+
+<h1>Edit Reading</h1>
+<div class="container block">
+ <div class="table">
+<%= form_with(model: @reading, local: true) do |form| %>
+  <div>
+    <%= form.label :blood_sugar %>
+    <%= form.number_field :blood_sugar %>
+  </div>
+
+  <div>
+    <%= form.submit "Update", class: "button is-primary" %>
+    <%= link_to "Cancel", root_path, class: "button is-light" %>
+  </div>
+<% end %>
+</div>
+</div>
+</div>

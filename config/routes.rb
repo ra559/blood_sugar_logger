@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
   root "readings#index"
-  resources :readings, only: [:index, :new, :create, :destroy]
+  resources :readings, only: [:index, :new, :create, :edit, :update]
 end

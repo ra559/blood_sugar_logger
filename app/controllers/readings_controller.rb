@@ -18,10 +18,22 @@ class ReadingsController < ApplicationController
     end
   end
 
+  def edit
+    @reading = Reading.find(params[:id])
+  end
+
+  def update
+    @reading = Reading.find(params[:id])
+    if @reading.update(reading_params)
+      redirect_to root_path, notice: "Reading updated!"
+    else
+      render :edit
+    end
+  end
+
   private
 
   def reading_params
     params.require(:reading).permit(:blood_sugar)
   end
 end
-
