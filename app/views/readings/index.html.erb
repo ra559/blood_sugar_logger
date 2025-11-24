@@ -9,6 +9,47 @@
   <button onclick="window.print()" class="button is-info">Print as PDF</button>
 </div>
 
+<% if @chart_data.any? %>
+  <div class="box block">
+    <h2 class="title is-4">Blood Sugar Trends</h2>
+    <%= line_chart @chart_data, 
+        height: "400px",
+        colors: ["#3273dc"],
+        library: {
+          scales: {
+            y: {
+              beginAtZero: false,
+              title: {
+                display: true,
+                text: "Blood Sugar (mg/dL)"
+              }
+            },
+            x: {
+              type: "time",
+              time: {
+                parser: "yyyy-MM-dd HH:mm",
+                tooltipFormat: "MMM dd, yyyy HH:mm",
+                displayFormats: {
+                  hour: "MMM dd HH:mm",
+                  day: "MMM dd",
+                  month: "MMM yyyy"
+                }
+              },
+              title: {
+                display: true,
+                text: "Date & Time"
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        } %>
+  </div>
+<% end %>
+
 <% @readings_by_year.each do |year, readings| %>
   <h2><%= year %></h2>
   <table class="table block">
