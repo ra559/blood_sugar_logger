@@ -9,6 +9,32 @@
   <button onclick="window.print()" class="button is-info">Print as PDF</button>
 </div>
 
+<div class="box no-print">
+  <h2 class="title is-5">Chart Date Range</h2>
+  <%= form_with url: readings_path, method: :get, local: true, class: "field is-grouped is-grouped-multiline" do %>
+    <div class="field">
+      <label class="label">Start date</label>
+      <div class="control">
+        <%= date_field_tag :start_date, @start_date, class: "input" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">End date</label>
+      <div class="control">
+        <%= date_field_tag :end_date, @end_date, class: "input" %>
+      </div>
+    </div>
+
+    <div class="field is-align-self-flex-end">
+      <div class="control">
+        <%= submit_tag "Update Range", class: "button is-link" %>
+        <%= link_to "Last 7 Days", readings_path, class: "button is-light" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 <% if @chart_data.any? %>
   <div class="box block">
     <h2 class="title is-4">Blood Sugar Trends</h2>
